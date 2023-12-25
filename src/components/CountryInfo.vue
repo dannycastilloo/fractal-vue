@@ -1,0 +1,97 @@
+<script setup>
+
+</script>
+
+<template>
+    <div>
+        <div class='country-info'>
+            <h3>{{name}}</h3>
+            <span>{{continent}}</span>
+        </div>
+        <div class='country-info'>
+            <h3>Capital</h3>
+            <span>{{capital}}</span>
+        </div>
+        <div class='country-info'>
+            <h3>Currency</h3>
+            <span>{{currency}}</span>
+        </div>
+        <div class='country-info'>
+            <h3>Native</h3>
+            <span>{{native}}</span>
+        </div>
+        <div class='country-info'>
+            <h3>Phone</h3>
+            <span>{{phone}}</span>
+        </div>
+        <div class='country-info'>
+            <h3>States</h3>
+            <span>{{firstStateName}}</span>
+        </div>
+    </div>
+</template>
+
+<style>
+.country-info {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+}
+
+.country-info>h3 {
+    color: rgb(43, 160, 255);
+    margin-right: auto;
+}
+
+.country-info>span {
+    text-align: end;
+}
+
+.country-presentation {
+    display: flex;
+    margin-top: 10px;
+    gap: 10px;
+}
+
+.country-presentation>img {
+    width: 65px;
+    height: 35px;
+    display: block;
+    margin: auto 10px;
+    border-radius: 4px;
+}
+
+.country-presentation-data {
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+}
+
+.country-presentation-data>h3 {
+    margin-top: 0;
+    margin-bottom: 5px;
+    color: rgb(43, 160, 255);
+}
+
+.country-region {
+    display: flex;
+    flex-direction: column;
+}
+
+.selected-country-img {
+    width: 180px;
+    margin: 0 auto;
+    display: block;
+    border-radius: 10px;
+}
+
+@media (width < 768px) {
+    .country-info>h3 {
+        font-size: 14px;
+    }
+
+    .country-info>span {
+        font-size: 14px;
+    }
+}
+</style>
