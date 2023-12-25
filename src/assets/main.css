@@ -1,10 +1,10 @@
-@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap');
 
 /* General */
 body {
     margin: 0;
     padding: 0;
-    background-color: rgb(235, 235, 235);
+    background-color: rgb(234, 255, 254);
     font-family: 'Roboto', sans-serif;
 }
 
@@ -25,10 +25,11 @@ h1 {
 .cards-container {
     display: flex;
     flex-wrap: wrap;
-    gap: 80px;
+    gap: 60px;
     justify-content: center;
     align-items: center;
     padding: 20px;
+    margin: 20px 0;
 }
 
 .detalles {
@@ -49,6 +50,6 @@ h1 {
 
 @media (768px <=width < 1440px) {
     .cards-container {
-        gap: 50px;
+        gap: 40px;
     }
 }

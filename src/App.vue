@@ -10,7 +10,7 @@ import Sidebar from './components/Sidebar.vue'
   </div>
 </template>
 
-<style scoped>
+<style>
 .app-container {
   display: flex;
 }

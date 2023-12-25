@@ -46,8 +46,9 @@ aside {
   background-color: #1e1e1e;
   padding-top: 20px;
   height: 100vh;
+  position: sticky;
+  top: 0;
 }
-
 
 .nav-banner>img {
     width: 150px;
@@ -85,6 +86,7 @@ aside {
 
     aside {
         display: none;
+        position: fixed;
     }
 
     aside>span {

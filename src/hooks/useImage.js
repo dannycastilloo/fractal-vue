@@ -1,33 +1,28 @@
-import { ref, onMounted, watch, useContext } from 'vue';
-import { CountryContext } from '../context';
+import { ref } from 'vue';
+import axios from 'axios';
 
 export const useImage = () => {
-  const images = ref([]);
-  const context = useContext(CountryContext);
+  const urlImages = ref([]);
 
-  const fetchImages = async () => {
-    try {
-      const selectedCountry = context.selectedCountry;
+  const getImageCountry = async (countries) => {
+    urlImages.value = [];
 
-      if (selectedCountry) {
-        const apiKey = '41223762-b5c29360eff2a9446660d1f1e';
-        const responsePlace = await fetch(`https://pixabay.com/api/?key=${apiKey}&q=${selectedCountry.name}&image_type=photo`);
-        const responseFlag = await fetch(`https://pixabay.com/api/?key=${apiKey}&q=${selectedCountry.name}+flag&image_type=photo`);
+    for (const country of countries) {
+      try {
+        const { data } = await axios.get(`https://api.pexels.com/v1/search?query=${country.name}`, {
+          params: { country: country.name },
+          headers: {
+            Authorization: '41223762-b5c29360eff2a9446660d1f1e'
+          }
+        });
 
-        const placeImageData = await responsePlace.json();
-        const flagImageData = await responseFlag.json();
-
-        if (placeImageData.hits && placeImageData.hits.length > 0 && flagImageData.hits && flagImageData.hits.length > 0) {
-          images.value = [placeImageData.hits[0], flagImageData.hits[0]];
-        }
+        const randomPhoto = data.photos[Math.floor(Math.random() * 3)];
+        urlImages.value.push({ country: country.name, url: randomPhoto ? randomPhoto.src.landscape : ' ' });
+      } catch (error) {
+        urlImages.value.push({ country: country.name, url: ' ' });
       }
-    } catch (error) {
-      console.error('Error fetching images from Pixabay:', error);
     }
   };
 
-  onMounted(fetchImages);
-  watch(() => context.selectedCountry, fetchImages);
-
-  return images;
+  return { urlImages, getImageCountry };
 };

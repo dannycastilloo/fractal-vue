@@ -15,7 +15,7 @@ const handleClick = () => {
 
 <template>
     <div class='search-container'>
-        <input class='search-input' type="text" placeholder='Search country...' v-model="search" @click="handleClick" />
+        <input class='search-input' type="text" placeholder='País' v-model="search" @click="handleClick" />
     </div>
 </template>
 
@@ -29,14 +29,18 @@ const handleClick = () => {
 }
 
 .search-input {
-    padding: 10px;
+    padding: 15px 25px;
     border: 1px solid #ccc;
-    border-radius: 10px;
+    border-radius: 25px;
     font-size: 16px;
     width: 300px;
+    background-color: #ffffff;
+    box-shadow: 0 10px 10px -10px rgba(0, 0, 0, 0.5);
+    font-family: 'Roboto', sans-serif;
 }
 
 .search-input::placeholder {
-    color: #a0a0a0;
+    color: #8b8b8b;
+    font-weight: 700;
 }
 </style>
