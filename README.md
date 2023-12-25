@@ -1,4 +1,4 @@
-# Prueba Fractal (Esta vez optimizada y en Vue)
+### Prueba Fractal (Esta vez optimizada y en Vue)
 Esta aplicación presenta nterfaz de usuario agradable y fácil de usar, que permite a los usuarios explorar la 
 información sobre los diferentes continentes y países de manera intuitiva.
 

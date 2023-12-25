@@ -2,6 +2,8 @@
 import { ref, onMounted, watch } from 'vue';
 import axios from 'axios';
 
+import CountryInfo from './CountryInfo.vue';
+
 const selectedCountryImages = ref([]);
 const context = defineProps(['selectedCountry', 'isInfoOpen', 'closeInfo']);
 
@@ -30,10 +32,6 @@ watch(() => context.selectedCountry, async (newVal) => {
         const images = await fetchImages(countryName);
         selectedCountryImages.value = images;
     }
-});
-
-onMounted(() => {
-    console.log("InfoBar component has been mounted!");
 });
 </script>
 

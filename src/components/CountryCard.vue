@@ -1,36 +1,33 @@
 <script setup>
-
-import { defineProps, ref, watch } from 'vue';
+import { defineProps, ref, watchEffect } from 'vue';
 
 const { search, countries, handleCardClick } = defineProps(['search', 'countries', 'handleCardClick']);
-
 const filteredCountries = ref([]);
 
-watch(() => {
+watchEffect(() => {
   if (countries) {
-    // Your logic to filter countries based on search
+    // Tu lógica para filtrar los países según la búsqueda
     filteredCountries.value = countries.filter((country) =>
       country.name.toLowerCase().includes(search.toLowerCase())
     );
   }
-}, [search, countries]);
-
+});
 </script>
 
 <template>
-    <div>
-        <article v-for="{ countryName, images, ...countryDetails } in filteredCountries" :key="countryName"
-            class='country-card' @click="() => handleCardClick({ name: countryName, images, ...countryDetails })">
-            <img v-if="images.placeImage" :src="images.placeImage.largeImageURL" alt="" />
-            <div class='country-bottom'>
-                <img v-if="images.flagImage" class="flag-image" :src="images.flagImage.largeImageURL" alt="Flag" />
-                <div class='country-data'>
-                    <h3>{{ countryName }}</h3>
-                    <span>{{ countryDetails.continent.name }}</span>
-                </div>
-            </div>
-        </article>
-    </div>
+  <div>
+    <article v-for="{ countryName, images, ...countryDetails } in filteredCountries" :key="countryName"
+      class='country-card' @click="() => handleCardClick({ name: countryName, images, ...countryDetails })">
+      <img v-if="images.placeImage" :src="images.placeImage.largeImageURL" alt="" />
+      <div class='country-bottom'>
+        <img v-if="images.flagImage" class="flag-image" :src="images.flagImage.largeImageURL" alt="Flag" />
+        <div class='country-data'>
+          <h3>{{ countryName }}</h3>
+          <span>{{ countryDetails.continent.name }}</span>
+        </div>
+      </div>
+    </article>
+  </div>
 </template>
 
 <style>

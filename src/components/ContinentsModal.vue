@@ -1,21 +1,25 @@
 <script setup>
 
 import Continent from './Continent.vue'
-import { ref } from 'vue'
+import { defineProps } from 'vue';
 
-const context = defineProps(['closeContinentsModal', 'setSelectedContinent', 'isContinentsModalOpen'])
+const { closeContinentsModal, setSelectedContinent, isContinentsModalOpen } = defineProps([
+  'closeContinentsModal',
+  'setSelectedContinent',
+  'isContinentsModalOpen',
+]);
 
 const handleContinentSelect = (continent) => {
-  context.setSelectedContinent(continent)
-  context.closeContinentsModal()
-}
+  setSelectedContinent(continent);
+  closeContinentsModal();
+};
 
 </script>
 
 <template>
   <div class="continents-modal"
-    :class="{ 'flex': context.isContinentsModalOpen, 'hidden': !context.isContinentsModalOpen }">
-    <button @click="context.closeContinentsModal">
+    :class="{ 'flex': isContinentsModalOpen, 'hidden': !isContinentsModalOpen }">
+    <button @click="closeContinentsModal">
       <img src="/extra/x.svg" alt="Cerrar" />
     </button>
     <div class='continents-container'>

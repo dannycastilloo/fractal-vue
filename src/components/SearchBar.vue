@@ -1,23 +1,21 @@
 <script setup>
+import { ref, watch, defineProps, defineEmits } from 'vue';
 
-import { ref, watch } from 'vue'
-
-const search = ref('')
+const emit = defineEmits();
+const search = ref('');
 
 watch(search, (newValue) => {
-  context.setSearch && context.setSearch(newValue)
-})
+  emit('updateSearch', newValue);
+});
 
+const handleClick = () => {
+  emit('openContinentsModal');
+};
 </script>
 
 <template>
     <div class='search-container'>
-        <input
-            class='search-input'
-            type="text"
-            placeholder='Search country...'
-            v-model="search"
-            @click="context.openContinentsModal" />
+        <input class='search-input' type="text" placeholder='Search country...' v-model="search" @click="handleClick" />
     </div>
 </template>
 
