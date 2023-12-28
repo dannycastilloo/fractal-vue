@@ -1,10 +1,10 @@
 <script setup>
 
 const props = defineProps(['title', 'picture']);
-const { emit } = defineEmits();
+const emit = defineEmits(['click']);
 
 const handleContinentClick = () => {
-  emit('continent-click', props.title);
+  emit('click', props.title);
 };
 
 </script>

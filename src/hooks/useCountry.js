@@ -28,12 +28,12 @@ export const useCountry = () => {
   const dataCountries = reactive(result);
   const filteredCountries = reactive({ data: [] });
 
-  const getCountry = (searchInput) => {
+  const getCountry = (searchInput, continent) => {
     const upperLetterCountry = searchInput.charAt(0).toUpperCase();
     const fetchCountry = `${upperLetterCountry + searchInput.slice(1).toLowerCase()}`;
 
     filteredCountries.data = dataCountries.value.countries.filter((country) =>
-      country.name.includes(fetchCountry)
+      country.name.includes(fetchCountry) && (!continent || country.continent.name === continent)
     );
   };
 

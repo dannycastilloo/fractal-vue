@@ -20,13 +20,17 @@ const closeContinentsModal = () => {
 const updateSearch = (newValue) => {
   getCountry(newValue);
 };
+
+const setSelectedContinent = (continent) => {
+  getCountry('', continent);
+};
 </script>
 
 <template>
   <div class='main'>
     <SearchBar @openContinentsModal="openContinentsModal" @updateSearch="updateSearch" />
 
-    <ContinentsModal :closeContinentsModal="closeContinentsModal" :isContinentsModalOpen="isContinentsModalOpen" />
+    <ContinentsModal :closeContinentsModal="closeContinentsModal" :isContinentsModalOpen="isContinentsModalOpen" :setSelectedContinent="setSelectedContinent" />
 
     <InfoBar />
 
