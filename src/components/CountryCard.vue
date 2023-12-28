@@ -1,20 +1,22 @@
 <script setup>
-import { useCountry } from '../hooks/useCountry';
+const props = defineProps({
+  countries: Array
+})
 
-const { filteredCountries } = useCountry();
+const apiKey = '41223762-b5c29360eff2a9446660d1f1e'
 </script>
 
 <template>
-    <article v-for="(country, index) in filteredCountries.data" :key="country.code" class="country-card">
-
-      <div class="country-bottom">
-        <img :src="`https://flagsapi.com/${country.code}/flat/64.png`" />
-        <div class='country-data'>
-          <h3 class="card-country-name">{{ country.name }}</h3>
-          <span class="card-country-continent">{{ country.continent.name }}</span>
-        </div>
+  <article v-for="(country, index) in countries.slice(0, 50)" :key="country.code" class="country-card">
+    <img :src="`https://pixabay.com/api/?key=${apiKey}&q=${country.code}&image_type=photo`" alt="Imagen del país" />
+    <div class="country-bottom">
+      <img :src="`https://flagsapi.com/${country.code}/flat/64.png`" />
+      <div class='country-data'>
+        <h3 class="card-country-name">{{ country.name }}</h3>
+        <span class="card-country-continent">{{ country.continent.name }}</span>
       </div>
-    </article>
+    </div>
+  </article>
 </template>
 
 <style>

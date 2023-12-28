@@ -1,7 +1,6 @@
 <script setup>
 
 import Continent from './Continent.vue'
-import { defineProps } from 'vue';
 
 const { closeContinentsModal, setSelectedContinent, isContinentsModalOpen } = defineProps([
   'closeContinentsModal',

@@ -12,6 +12,12 @@ export const useCountry = () => {
           continent {
             name
           }
+          languages {
+            name
+          }
+          states {
+            name
+          }
         }
       }
     `,

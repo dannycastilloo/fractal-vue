@@ -1,7 +1,7 @@
 <script setup>
-import { ref, watch, defineProps, defineEmits } from 'vue';
+import { ref, watch } from 'vue';
 
-const emit = defineEmits();
+const emit = defineEmits(['openContinentsModal','updateSearch']);
 const search = ref('');
 
 watch(search, (newValue) => {
