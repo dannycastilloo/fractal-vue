@@ -1,55 +1,31 @@
 <script setup>
-import { ref, onMounted, watch } from 'vue';
-import axios from 'axios';
-
 import CountryInfo from './CountryInfo.vue';
 
-const selectedCountryImages = ref([]);
-const context = defineProps(['selectedCountry', 'isInfoOpen', 'closeInfo']);
-
-const fetchImages = async (countryName) => {
-    try {
-        const apiKey = '41223762-b5c29360eff2a9446660d1f1e';
-        const [responsePlace, responseFlag] = await Promise.all([
-            axios.get(`https://pixabay.com/api/?key=${apiKey}&q=${countryName}&image_type=photo`),
-            axios.get(`https://pixabay.com/api/?key=${apiKey}&q=${countryName}+flag&image_type=photo`),
-        ]);
-
-        if (responsePlace.data && responsePlace.data.hits && responsePlace.data.hits.length > 0 &&
-            responseFlag.data && responseFlag.data.hits && responseFlag.data.hits.length > 0) {
-            return [responsePlace.data.hits[0], responseFlag.data.hits[0]];
-        }
-    } catch (error) {
-        console.error(`Error fetching images for ${countryName} from Pixabay:`, error);
-    }
-
-    return [];
-};
-
-watch(() => context.selectedCountry, async (newVal) => {
-    if (newVal) {
-        const countryName = newVal.name;
-        const images = await fetchImages(countryName);
-        selectedCountryImages.value = images;
-    }
-});
+const props = defineProps(['selectedCountry', 'isInfoOpen', 'closeInfo']);
 </script>
 
 <template>
-    <aside :class="{ flex: context.isInfoOpen, hidden: !context.isInfoOpen }" class="information-bar">
-        <button>
-            <img src="/extra/x.svg" alt="Cerrar" @click="context.closeInfo" />
-        </button>
-        <div>
-            <CountryInfo v-if="context.selectedCountry && context.selectedCountry.continent"
-                :name="context.selectedCountry.name || 'N/A'" :continent="context.selectedCountry.continent.name || 'N/A'"
-                :capital="context.selectedCountry.capital || 'N/A'" :language="context.selectedCountry.languages || 'N/A'"
-                :currency="context.selectedCountry.currency || 'N/A'" :native="context.selectedCountry.native || 'N/A'"
-                :phone="context.selectedCountry.phone || 'N/A'" :states="context.selectedCountry.states || 'N/A'"
-                :placeImage="selectedCountryImages.placeImage?.largeImageURL || 'N/A'"
-                :flagImage="selectedCountryImages.flagImage?.largeImageURL || 'N/A'" />
-        </div>
-    </aside>
+  <aside :class="{ flex: isInfoOpen, hidden: !isInfoOpen }" class="information-bar">
+    <button>
+      <img src="/extra/x.svg" alt="Cerrar" @click="closeInfo" />
+    </button>
+    <div>
+        <CountryInfo
+        v-if="selectedCountry && selectedCountry.continent"
+        :name="selectedCountry.name || 'N/A'"
+        :continent="selectedCountry.continent.name || 'N/A'"
+        :capital="selectedCountry.capital || 'N/A'"
+        :language="selectedCountry.languages || 'N/A'"
+        :currency="selectedCountry.currency || 'N/A'"
+        :native="selectedCountry.native || 'N/A'"
+        :phone="selectedCountry.phone || 'N/A'"
+        :states="selectedCountry.states || 'N/A'"
+        :placeImage="'N/A'"
+        :flagImage="'N/A'"
+        :firstStateName="selectedCountry.states && selectedCountry.states.length > 0 ? selectedCountry.states[0].name : 'N/A'"
+      />
+    </div>
+  </aside>
 </template>
 
 <style>
@@ -97,5 +73,12 @@ watch(() => context.selectedCountry, async (newVal) => {
     .information-bar {
         justify-content: start;
     }
+}
+
+@media (768px <= width < 1440px) {
+    .information-bar {
+    width: 300px;
+    padding: 80px 20px 20px 20px;
+}
 }
 </style>

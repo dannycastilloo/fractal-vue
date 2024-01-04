@@ -24,6 +24,24 @@ const updateSearch = (newValue) => {
 const setSelectedContinent = (continent) => {
   getCountry('', continent);
 };
+
+const selectedCountry = ref(null);
+
+const isInfoOpen = ref(false);
+
+const openInfo = () => {
+  isInfoOpen.value = true;
+};
+
+const closeInfo = () => {
+  isInfoOpen.value = false;
+};
+
+const handleCountrySelected = (country) => {
+  selectedCountry.value = country;
+  openInfo(); 
+  console.log('Country selected:', country);
+};
 </script>
 
 <template>
@@ -32,11 +50,11 @@ const setSelectedContinent = (continent) => {
 
     <ContinentsModal :closeContinentsModal="closeContinentsModal" :isContinentsModalOpen="isContinentsModalOpen" :setSelectedContinent="setSelectedContinent" />
 
-    <InfoBar />
+    <InfoBar :selectedCountry="selectedCountry" :isInfoOpen="isInfoOpen" :closeInfo="closeInfo" />
 
     <section>
       <div class="cards-container">
-        <CountryCard :countries="filteredCountries.data" />
+        <CountryCard :countries="filteredCountries.data" @countrySelected="handleCountrySelected" />
       </div>
     </section>
   </div>

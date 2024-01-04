@@ -1,13 +1,16 @@
 <script setup>
-const props = defineProps({
-  countries: Array
-})
-
+const props = defineProps(['countries'])
+const emit = defineEmits(['countrySelected'])
 const apiKey = '41223762-b5c29360eff2a9446660d1f1e'
+
+const handleCountrySelected = (country) => {
+  console.log('Country selected:', country);
+  emit('countrySelected', country)
+}
 </script>
 
 <template>
-  <article v-for="(country, index) in countries.slice(0, 50)" :key="country.code" class="country-card">
+  <article v-for="(country, index) in countries.slice(0, 50)" @click="handleCountrySelected(country)" :key="country.code" class="country-card">
     <img :src="`https://pixabay.com/api/?key=${apiKey}&q=${country.code}&image_type=photo`" alt="Imagen del país" />
     <div class="country-bottom">
       <img :src="`https://flagsapi.com/${country.code}/flat/64.png`" />

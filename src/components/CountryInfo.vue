@@ -1,5 +1,13 @@
 <script setup>
+import { ref, watchEffect } from 'vue';
 
+const props = defineProps(['name', 'continent', 'capital', 'currency', 'native', 'phone', 'states']);
+
+const formattedStates = ref([]);
+
+watchEffect(() => {
+  formattedStates.value = props.states.map((state) => state.name);
+});
 </script>
 
 <template>
@@ -26,7 +34,7 @@
         </div>
         <div class='country-info'>
             <h3>States</h3>
-            <span>{{firstStateName}}</span>
+            <span>{{ formattedStates.join(', ') || 'N/A' }}</span>
         </div>
     </div>
 </template>

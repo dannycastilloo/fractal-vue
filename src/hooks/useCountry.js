@@ -9,6 +9,7 @@ export const useCountry = () => {
         countries {
           code
           name
+          capital
           continent {
             name
           }
@@ -18,6 +19,9 @@ export const useCountry = () => {
           states {
             name
           }
+          phone
+          currency
+          native
         }
       }
     `,
