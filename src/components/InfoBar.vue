@@ -33,7 +33,7 @@ const props = defineProps(['selectedCountry', 'isInfoOpen', 'closeInfo']);
     position: fixed;
     display: flex;
     flex-direction: column;
-    width: 200px;
+    width: 250px;
     height: 100%;
     right: 0%;
     background-color: white;
@@ -77,7 +77,7 @@ const props = defineProps(['selectedCountry', 'isInfoOpen', 'closeInfo']);
 
 @media (768px <= width < 1440px) {
     .information-bar {
-    width: 300px;
+    width: 280px;
     padding: 80px 20px 20px 20px;
 }
 }

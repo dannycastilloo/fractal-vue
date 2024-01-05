@@ -43,4 +43,15 @@ const handleClick = () => {
     color: #8b8b8b;
     font-weight: 700;
 }
+
+@media (width < 768px) {
+    .search-container {
+        margin: 70px 0 0 0;
+    }
+
+    .search-input {
+    padding: 15px 25px;
+    width: 250px;
+    }
+}
 </style>

@@ -39,14 +39,15 @@ const closeInfo = () => {
 
 const handleCountrySelected = (country) => {
   selectedCountry.value = country;
-  openInfo(); 
-  console.log('Country selected:', country);
+  openInfo();
 };
 </script>
 
 <template>
   <div class='main'>
     <SearchBar @openContinentsModal="openContinentsModal" @updateSearch="updateSearch" />
+
+    <img src="https://pixabay.com/api/?key=41223762-b5c29360eff2a9446660d1f1e&q=yellow+flowers&image_type=photo&pretty=true" alt="">
 
     <ContinentsModal :closeContinentsModal="closeContinentsModal" :isContinentsModalOpen="isContinentsModalOpen" :setSelectedContinent="setSelectedContinent" />
 

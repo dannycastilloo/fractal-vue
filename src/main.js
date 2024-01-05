@@ -1,4 +1,3 @@
-// Main Option
 import './assets/main.css'
 
 import { createApp, provide } from 'vue'
